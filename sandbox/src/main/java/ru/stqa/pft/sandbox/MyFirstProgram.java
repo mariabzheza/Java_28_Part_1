@@ -8,7 +8,7 @@ public class MyFirstProgram {
 		hello("user");
 		hello("Alexei");
 
-		Square s = new Square(5);
+		Square s = new Square(8);
 		System.out.println("The area of square with side " + s.l +" = " +s.area());
 
 		Rectangle r = new Rectangle(4,6);
