@@ -14,6 +14,9 @@ public class ApplicationManager {
     FirefoxDriver wd;
 
     private GroupHelper groupHelper;
+    private ContactHelper contactHelper;
+    private NavigationHelper navigationHelper;
+    private SessionHelper sessionHelper;
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
         try {
@@ -27,23 +30,12 @@ public class ApplicationManager {
     public void init() {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        wd.get("http://localhost/addressbook/group.php");
+        wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
-        login("admin", "secret");
-    }
-
-    private void login(String username, String password) {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-    }
-
-    public void gotoGroupPage() {
-        wd.findElement(By.linkText("Групи")).click();
+        contactHelper = new ContactHelper(wd);
+        navigationHelper = new NavigationHelper(wd);
+        sessionHelper = new SessionHelper(wd);
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
@@ -54,53 +46,16 @@ public class ApplicationManager {
         return groupHelper;
     }
 
-    /*
-    public void returnToHomePage() {
-        wd.findElement(By.linkText("Головна")).click();
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 
-    public void submitContactCreation() {
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
     }
 
-    public void fillContactForm(ContactData contactData) {
-        wd.findElement(By.name("firstname")).click();
-        wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-        wd.findElement(By.name("lastname")).click();
-        wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-        wd.findElement(By.name("nickname")).click();
-        wd.findElement(By.name("nickname")).clear();
-        wd.findElement(By.name("nickname")).sendKeys(contactData.getNickName());
-        wd.findElement(By.name("title")).click();
-        wd.findElement(By.name("title")).clear();
-        wd.findElement(By.name("title")).sendKeys(contactData.getJobTitle());
-        wd.findElement(By.name("company")).click();
-        wd.findElement(By.name("company")).clear();
-        wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
-        wd.findElement(By.name("address")).click();
-        wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(contactData.getHomeAddress());
-        wd.findElement(By.name("mobile")).click();
-        wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
-        wd.findElement(By.name("work")).click();
-        wd.findElement(By.name("work")).clear();
-        wd.findElement(By.name("work")).sendKeys(contactData.getWorkPhone());
+    public SessionHelper getSessionHelper() {
+        return sessionHelper;
     }
 
-    public void initContactCreation() {
-        wd.findElement(By.linkText("Додати контакт")).click();
-    }
-
-    public void deleteContact() {
-        wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
-    }
-
-    public void selectContact() {
-        //!!!!!!!!!!!!!!!!!!!!
-        wd.findElement(By.id("8")).click();
-    }
-*/
 }
