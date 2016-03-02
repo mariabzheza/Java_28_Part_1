@@ -29,16 +29,19 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactCreation() {
-        click(By.linkText("Додати контакт"));
+        click(By.linkText("add new"));
     }
 
     public void deleteContact() {
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+        click(By.xpath("html/body/div/div[4]/form[2]/input[2]"));
     }
 
-    public void selectContact() {
+    public void selectToEditDeleteContact() {
         //!!!!!!!!!!!!!!!!!!!!
-        click(By.id("10"));
+        click(By.xpath("(//img[@alt='Edit'])[1]"));
     }
 
+    public void submitContactModification() {
+        click(By.xpath("html/body/div/div[4]/form[1]/input[22]"));
+    }
 }
