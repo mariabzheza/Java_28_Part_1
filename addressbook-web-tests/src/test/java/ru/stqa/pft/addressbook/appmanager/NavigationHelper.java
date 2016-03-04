@@ -14,12 +14,19 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void gotoGroupPage() {
-        //click(By.linkText("Групи"));
+        if ( isElementPresent(By.tagName("h1"))
+                && (wd.findElement(By.tagName("h1")).getText().equals("Groups"))
+                && isElementPresent(By.name("new"))) {
+            // if == true then exit from this method;
+            return;
+        }
         click(By.linkText("groups"));
     }
 
-    public void returnToHomePage() {
-        //click(By.linkText("Головна"));
+    public void goToHomePage() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        }
         click(By.linkText("home"));
     }
 }
