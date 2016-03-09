@@ -10,11 +10,11 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification() {
-        app.getNavigationHelper().returnToHomePage();
+        app.getNavigationHelper().goToHomePage();
         app.getContactHelper().selectToEditDeleteContact();
         app.getContactHelper().fillContactForm(new ContactData("firstname11", "lastname11", "nickname11", null, "company11", "homeaddress11", "mobile11", "workphone11", null), false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().returnToHomePage();
+        app.getNavigationHelper().goToHomePage();
 
     }
 
