@@ -46,9 +46,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("html/body/div/div[4]/form[2]/input[2]"));
     }
 
-    public void selectToEditDeleteContact() {
+    public void selectToEditDeleteContact(int index) {
+        //wd.findElements(By.name("selected[]")).get(index).click();
         //!!!!!!!!!!!!!!!!!!!!
-        click(By.xpath("(//img[@alt='Edit'])[1]"));
+        click(By.xpath("(//img[@alt='Edit'])[" + (index) + "]"));
     }
 
     public void submitContactModification() {
@@ -61,7 +62,7 @@ public class ContactHelper extends HelperBase {
 
     public void createContact(ContactData contact) {
         initContactCreation();
-        fillContactForm(new ContactData("firstname", "lastname", "nickname", "jobtitle", "company", "homeaddress", "mobile", null, "test11"), true);
+        fillContactForm(new ContactData("firstname", "lastname", "nickname", "jobtitle", "company", "homeaddress", "mobile", null, "test1"), true);
         submitContactCreation();
         returnToHomePage();
 

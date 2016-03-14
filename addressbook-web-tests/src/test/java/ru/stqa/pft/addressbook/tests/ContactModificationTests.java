@@ -15,10 +15,10 @@ public class ContactModificationTests extends TestBase {
         //int before = app.getContactHelper().getContactCount();
         if ( !app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("firstname", "lastname", "nickname",
-                    "jobtitle", "company", "homeaddress", "mobile", null, "test11"));
+                    "jobtitle", "company", "homeaddress", "mobile", null, "test1"));
         }
         int before = app.getContactHelper().getContactCount();
-        app.getContactHelper().selectToEditDeleteContact();
+        app.getContactHelper().selectToEditDeleteContact(before);
         app.getContactHelper().fillContactForm(new ContactData("firstname11", "lastname11",
                 "nickname11", null, "company11", "homeaddress11", "mobile11", "workphone11", null), false);
         app.getContactHelper().submitContactModification();
