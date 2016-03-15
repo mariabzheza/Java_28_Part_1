@@ -20,7 +20,7 @@ public class ContactModificationTests extends TestBase {
                     "jobtitle", "company", "homeaddress", "mobile", null, "test1"));
         }
         //int before = app.getContactHelper().getContactCount();
-        List<ContactData> before = app.getContactHelper().getGroupList();
+        List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectToEditDeleteContact(before.size());
         ContactData contact = new ContactData(before.get(before.size()-1).getId(), "firstname11", "lastname11",
                 "nickname11", null, "company11", "homeaddress11", "mobile11", "workphone11", null);
@@ -28,7 +28,7 @@ public class ContactModificationTests extends TestBase {
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToHomePage();
         //int after = app.getContactHelper().getContactCount();
-        List<ContactData> after = app.getContactHelper().getGroupList();
+        List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() -1);
