@@ -8,6 +8,7 @@ public class GroupData {
 
     public GroupData(String name, String header, String footer) {
         this.id = Integer.MAX_VALUE; //щоб група при сортуванні була самою останньою. Якщо поставити 0,то буде першою.
+        // але це потрібно тільки тоді, коли не будемо порівнювати по Id + тоді ще потрібно буде переробити методи equals та hashCode!!!
         this.name = name;
         this.header = header;
         this.footer = footer;
