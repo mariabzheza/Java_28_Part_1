@@ -13,7 +13,8 @@ public class ContactData {
     private String group;
 
     public ContactData(String firstName, String lastName, String nickName, String jobTitle, String company, String homeAddress, String mobile, String workPhone, String group) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE;//щоб контакт при сортуванні був самим останнім. Якщо поставити 0,то буде першим.
+        // але це потрібно тільки тоді, коли не будемо порівнювати по Id + тоді ще потрібно буде переробити методи equals та hashCode!!!
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
