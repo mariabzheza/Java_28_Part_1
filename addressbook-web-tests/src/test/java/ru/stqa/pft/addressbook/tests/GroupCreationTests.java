@@ -26,12 +26,18 @@ public class GroupCreationTests extends TestBase {
         }
         */
         // use Comparator without previous for
-        Comparator<? super GroupData> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
+        /*Comparator<? super GroupData> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
         int max = after.stream().max(byId).get().getId();
-
-        group.setId(max);
+        group.setId(max);*/
+        //short line without previously commented lines
+        group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         before.add(group);
-        Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
+        Comparator<? super GroupData> byId1 = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId1);
+        after.sort(byId1);
+        Assert.assertEquals(before,after);
+        //The old version of comparison
+        //Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
     }
 
 }

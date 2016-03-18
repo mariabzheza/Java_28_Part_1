@@ -7,7 +7,7 @@ public class GroupData {
     private final String footer;
 
     public GroupData(String name, String header, String footer) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE; //щоб група при сортуванні була самою останньою. Якщо поставити 0,то буде першою.
         this.name = name;
         this.header = header;
         this.footer = footer;
