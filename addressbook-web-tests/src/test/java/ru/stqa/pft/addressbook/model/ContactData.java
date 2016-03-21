@@ -1,20 +1,20 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String nickName;
-    private final String jobTitle;
-    private final String company;
-    private final String homeAddress;
-    private final String mobile;
-    private final String workPhone;
+    private int id = Integer.MAX_VALUE;//щоб контакт при сортуванні був самим останнім. Якщо поставити 0,то буде першим.
+    // але це потрібно тільки тоді, коли не будемо порівнювати по Id + тоді ще потрібно буде переробити методи equals та hashCode!!!;
+    private String firstName;
+    private String lastName;
+    private String nickName;
+    private String jobTitle;
+    private String company;
+    private String homeAddress;
+    private String mobile;
+    private String workPhone;
     private String group;
 
-    public ContactData(String firstName, String lastName, String nickName, String jobTitle, String company, String homeAddress, String mobile, String workPhone, String group) {
-        this.id = Integer.MAX_VALUE;//щоб контакт при сортуванні був самим останнім. Якщо поставити 0,то буде першим.
-        // але це потрібно тільки тоді, коли не будемо порівнювати по Id + тоді ще потрібно буде переробити методи equals та hashCode!!!
+/*    public ContactData(String firstName, String lastName, String nickName, String jobTitle, String company, String homeAddress, String mobile, String workPhone, String group) {
+        this.id = Integer.MAX_VALUE;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
@@ -39,9 +39,56 @@ public class ContactData {
         this.workPhone = workPhone;
         this.group = group;
     }
+    */
 
-    public void setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withNickName(String nickName) {
+        this.nickName = nickName;
+        return this;
+    }
+
+    public ContactData withJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+        return this;
+    }
+
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+        return this;
+    }
+
+    public ContactData withMobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     public int getId() {
