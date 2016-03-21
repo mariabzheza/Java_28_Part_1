@@ -70,8 +70,15 @@ public class ContactHelper extends HelperBase {
         fillContactForm(new ContactData("firstname", "lastname", "nickname", "jobtitle", "company", "homeaddress", "mobile", null, "test1"), true);
         submitContactCreation();
         returnToHomePage();
-
     }
+
+    public void modifyContact(int index, ContactData contact) {
+        selectToEditDeleteContact(index + 1);
+        fillContactForm(contact, false);
+        submitContactModification();
+        returnToHomePage();
+    }
+
     public void returnToHomePage() {
         if (isElementPresent(By.id("maintable"))) {
             return;

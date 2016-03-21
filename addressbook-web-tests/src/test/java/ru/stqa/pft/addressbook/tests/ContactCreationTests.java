@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test(enabled = false)
+    @Test
     public void testContactCreation() {
         app.getNavigationHelper().goToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
@@ -19,12 +19,6 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().createContact(contact);
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() +1);
-        /* int max = 0;
-        for(ContactData c: after) {
-            if (c.getId() > max) {
-                max = c.getId();
-            }
-        } */
         // use Comparator without previous for
         contact.setId(after.stream().max((cont1, cont2) -> Integer.compare(cont1.getId(), cont2.getId())).get().getId());
         before.add(contact);
