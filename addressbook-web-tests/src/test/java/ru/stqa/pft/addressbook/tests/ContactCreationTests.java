@@ -6,29 +6,29 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
         app.goTo().homePage();
-        List<ContactData> before = app.contact().getList();
+        Set<ContactData> before = app.contact().all(); //change .getList method to .all
         ContactData contact = new ContactData()
                 .withFirstName("firstname").withLastName("lastname").withNickName("nickname")
                 .withJobTitle("jobtitle").withCompany("company").withHomeAddress("homeaddress")
                 .withMobile("mobile").withGroup("test1");
         app.contact().create(contact);
-        List<ContactData> after = app.contact().getList();
+        Set<ContactData> after = app.contact().all(); //change .getList method to .all
         Assert.assertEquals(after.size(), before.size() +1);
-        // use Comparator without previous for
-        contact.withId(after.stream().max((cont1, cont2) -> Integer.compare(cont1.getId(), cont2.getId())).get().getId());
+
+        // Comparator
+        //contact.withId(after.stream().max((cont1, cont2) -> Integer.compare(cont1.getId(), cont2.getId())).get().getId());
+        //easiest comparator was bellow:
+        contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
+
         before.add(contact);
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before,after);
-        //The old version of comparison
-        //Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
     }
 
 }

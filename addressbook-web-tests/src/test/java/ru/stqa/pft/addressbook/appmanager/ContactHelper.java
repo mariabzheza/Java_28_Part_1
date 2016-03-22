@@ -11,7 +11,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by maria on 02.03.2016.
@@ -113,6 +115,19 @@ public class ContactHelper extends HelperBase {
 
     private List<WebElement> getElementsRows() {
         return wd.findElements(By.xpath("//tr[@name='entry']"));
+    }
+
+    public Set<ContactData> all() {
+
+        Set<ContactData> contacts = new HashSet<ContactData>();
+        List<WebElement> elements = getElementsRows();
+        for (WebElement element: elements) {
+            String firstName = element.findElement(By.xpath(".//td[3]")).getText();
+            String lastName = element.findElement(By.xpath(".//td[2]")).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+        }
+        return contacts;
     }
 
 }
