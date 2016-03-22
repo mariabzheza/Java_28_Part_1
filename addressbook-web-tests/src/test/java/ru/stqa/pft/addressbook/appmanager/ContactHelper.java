@@ -1,14 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -59,6 +56,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//img[@alt='Edit'])[" + (index) + "]"));
     }
 
+    private void selectToEditDeleteContactById(int id) {
+        wd.findElement(By.cssSelector(".center>a[href='edit.php?id=" + id + "']>img[title='Edit']")).click();
+    }
+
     public void submitContactModification() {
         click(By.xpath("html/body/div/div[4]/form[1]/input[22]"));
     }
@@ -83,8 +84,21 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
+    public void modify(ContactData contact) {
+        selectToEditDeleteContactById(contact.getId());
+        fillContactForm(contact, false);
+        submitContactModification();
+        returnToHomePage();
+    }
+
     public void delete(int index) {
         selectToEditDeleteContact(index + 1);
+        deleteContact();
+        returnToHomePage();
+    }
+
+    public void delete(ContactData contact) {
+        selectToEditDeleteContactById(contact.getId());
         deleteContact();
         returnToHomePage();
     }
