@@ -13,6 +13,7 @@ public class ContactData {
     private String mobile;
     private String workPhone;
     private String group;
+    private String allPhones;
 
 /*    public ContactData(String firstName, String lastName, String nickName, String jobTitle, String company, String homeAddress, String mobile, String workPhone, String group) {
         this.id = Integer.MAX_VALUE;
@@ -97,6 +98,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -139,6 +145,10 @@ public class ContactData {
 
     public String getGroup() {
         return group;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
     }
 
     @Override
