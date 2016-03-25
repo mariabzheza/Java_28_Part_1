@@ -31,6 +31,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("title"), contactData.getJobTitle());
         type(By.name("company"), contactData.getCompany());
         type(By.name("address"), contactData.getHomeAddress());
+        type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobile());
         type(By.name("work"), contactData.getWorkPhone());
 
@@ -48,7 +49,7 @@ public class ContactHelper extends HelperBase {
     public void deleteContact() {
         click(By.xpath("html/body/div/div[4]/form[2]/input[2]"));
     }
-
+/*
     public void selectToEditDeleteContact(int index) {
         //wd.findElements(By.name("selected[]")).get(index).click();
         //!!!!!!!!!!!!!!!!!!!!
@@ -58,6 +59,7 @@ public class ContactHelper extends HelperBase {
     private void selectToEditDeleteContactById(int id) {
         wd.findElement(By.cssSelector(".center>a[href='edit.php?id=" + id + "']>img[title='Edit']")).click();
     }
+    */
 
     public void submitContactModification() {
         click(By.xpath("html/body/div/div[4]/form[1]/input[22]"));
@@ -149,6 +151,39 @@ public class ContactHelper extends HelperBase {
             contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
         }
         return new Contacts(contactCache);
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        //selectToEditDeleteContactById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
+                .withHomePhone(home).withMobile(mobile).withWorkPhone(work);
+    }
+
+    public void selectToEditDeleteContact(int index) {
+        //wd.findElements(By.name("selected[]")).get(index).click();
+        //!!!!!!!!!!!!!!!!!!!!
+        click(By.xpath("(//img[@alt='Edit'])[" + (index) + "]"));
+    }
+
+    private void selectToEditDeleteContactById(int id) {
+        //wd.findElement(By.cssSelector(".center>a[href='edit.php?id=" + id + "']>img[title='Edit']")).click();
+        //wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']>img[title='Edit']")).click();
+        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    }
+
+    // This new added method is the same as my selectToEditDeleteContactById method.
+    private void initContactModificationById(int id) {
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+        WebElement row = checkbox.findElement(By.xpath("./../.."));
+        List<WebElement> cells = row.findElements(By.tagName("td"));
+        cells.get(7).findElement(By.tagName("a")).click();
     }
 
 }
