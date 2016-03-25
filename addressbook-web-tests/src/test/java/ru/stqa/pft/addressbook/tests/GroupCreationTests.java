@@ -16,8 +16,8 @@ public class GroupCreationTests extends TestBase {
         //GroupData group = new GroupData("test1", null, null);
         GroupData group = new GroupData().withName("test1");
         app.group().create(group);
+        assertThat(app.group().getGroupCount(), equalTo(before.size() + 1));
         Groups after = app.group().all(); //change .getList method to .all
-        assertThat(after.size(), equalTo(before.size() + 1));
 
         //Comparator
         //group.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
@@ -26,5 +26,18 @@ public class GroupCreationTests extends TestBase {
 
         assertThat(after, equalTo(before.withAdded(group)));
     }
+
+    @Test
+    public void testBadGroupCreation() {
+        app.goTo().groupPage();
+        Groups before = app.group().all(); //change .getList method to .all
+        //GroupData group = new GroupData("test1", null, null);
+        GroupData group = new GroupData().withName("test34'");
+        app.group().create(group);
+        assertThat(app.group().getGroupCount(), equalTo(before.size()));
+        Groups after = app.group().all(); //change .getList method to .all
+        assertThat(after, equalTo(before));
+    }
+
 
 }

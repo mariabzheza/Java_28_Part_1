@@ -19,8 +19,9 @@ public class ContactCreationTests extends TestBase {
                 .withJobTitle("jobtitle").withCompany("company").withHomeAddress("homeaddress")
                 .withMobile("mobile").withGroup("test1");
         app.contact().create(contact);
+        assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
         Contacts after = app.contact().all(); //change .getList method to .all
-        assertEquals(after.size(), before.size() +1);
+        //assertEquals(after.size(), before.size() +1);
 
         // Comparator
         //contact.withId(after.stream().max((cont1, cont2) -> Integer.compare(cont1.getId(), cont2.getId())).get().getId());
