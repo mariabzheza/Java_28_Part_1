@@ -145,17 +145,22 @@ public class ContactHelper extends HelperBase {
         contactCache = new Contacts();
         List<WebElement> elements = getElementsRows();
         for (WebElement element: elements) {
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String firstName = element.findElement(By.xpath(".//td[3]")).getText();
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+            //cut string on 3 with diff phone strings.
+            String[] phones = element.findElement(By.xpath(".//td[6]")).getText().split("\n");
+            contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
+                    .withHomePhone(phones[0]).withMobile(phones[1]).withWorkPhone(phones[2]));
         }
         return new Contacts(contactCache);
     }
 
     public ContactData infoFromEditForm(ContactData contact) {
-        initContactModificationById(contact.getId());
-        //selectToEditDeleteContactById(contact.getId());
+        //This method is from Lesson 5.
+        //initContactModificationById(contact.getId());
+        //The next is my method -->
+        selectToEditDeleteContactById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
         String home = wd.findElement(By.name("home")).getAttribute("value");
