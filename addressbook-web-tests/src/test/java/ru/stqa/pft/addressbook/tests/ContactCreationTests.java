@@ -15,9 +15,18 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         Contacts before = app.contact().all(); //change .getList method to .all
         ContactData contact = new ContactData()
+                .withFirstName("firstname").withLastName("lastname")
+                .withNickName("nickname").withTitle("jobtitle").withCompany("company")
+                .withHomeAddress("homeaddress").withAddress2("address2")
+                .withHomePhone("22-33-15").withMobile("+7(34) 55").withWorkPhone("33-33")
+                .withPhone2("77-89").withFax("987")
+                .withHomePage("homepage.com").withNotes("notes")
+                .withEmail("email@e.com").withEmail2("email2@e.com").withEmail3("email3@e.com")
+                .withGroup("test1");
+                /*
                 .withFirstName("firstname").withLastName("lastname").withNickName("nickname")
-                .withJobTitle("jobtitle").withCompany("company").withHomeAddress("homeaddress")
-                .withMobile("mobile").withGroup("test1");
+                .withTitle("jobtitle").withCompany("company").withHomeAddress("homeaddress")
+                .withMobile("mobile").withGroup("test1");*/
         app.contact().create(contact);
         assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
         Contacts after = app.contact().all(); //change .getList method to .all

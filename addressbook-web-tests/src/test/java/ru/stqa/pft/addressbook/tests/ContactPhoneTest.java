@@ -33,7 +33,7 @@ public class ContactPhoneTest extends TestBase {
         } ... and if... */
 
         // New in Java 8!!!
-        return Arrays.asList(contact.getHomePhone(), contact.getMobile(), contact.getWorkPhone())
+        return Arrays.asList(contact.getHomePhone(), contact.getMobile(), contact.getWorkPhone(), contact.getPhone2())
                 .stream().filter((s) -> ! s.equals(""))
                 .map(ContactPhoneTest::cleaned)
                 .collect(Collectors.joining("\n"));

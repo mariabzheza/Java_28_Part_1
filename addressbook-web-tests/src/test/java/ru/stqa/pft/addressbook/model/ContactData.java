@@ -6,7 +6,7 @@ public class ContactData {
     private String firstName;
     private String lastName;
     private String nickName;
-    private String jobTitle;
+    private String title;
     private String company;
     private String homeAddress;
     private String homePhone;
@@ -18,14 +18,19 @@ public class ContactData {
     private String email2;
     private String email3;
     private String allMails;
+    private String phone2;
+    private String fax;
+    private String address2;
+    private String homePage;
+    private String notes;
 
 
-/*    public ContactData(String firstName, String lastName, String nickName, String jobTitle, String company, String homeAddress, String mobile, String workPhone, String group) {
+/*    public ContactData(String firstName, String lastName, String nickName, String title, String company, String homeAddress, String mobile, String workPhone, String group) {
         this.id = Integer.MAX_VALUE;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
-        this.jobTitle = jobTitle;
+        this.title = title;
         this.company = company;
         this.homeAddress = homeAddress;
         this.mobile = mobile;
@@ -34,12 +39,12 @@ public class ContactData {
     }
 
 
-    public ContactData(int id, String firstName, String lastName, String nickName, String jobTitle, String company, String homeAddress, String mobile, String workPhone, String group) {
+    public ContactData(int id, String firstName, String lastName, String nickName, String title, String company, String homeAddress, String mobile, String workPhone, String group) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
-        this.jobTitle = jobTitle;
+        this.title = title;
         this.company = company;
         this.homeAddress = homeAddress;
         this.mobile = mobile;
@@ -68,8 +73,8 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public ContactData withTitle(String title) {
+        this.title = title;
         return this;
     }
 
@@ -128,6 +133,31 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withNotes(String notes) {
+        this.notes = notes;
+        return this;
+    }
+
+    public ContactData withHomePage(String homePage) {
+        this.homePage = homePage;
+        return this;
+    }
+
+    public ContactData withAddress2(String address2) {
+        this.address2 = address2;
+        return this;
+    }
+
+    public ContactData withFax(String fax) {
+        this.fax = fax;
+        return this;
+    }
+
+    public ContactData withPhone2(String phone2) {
+        this.phone2 = phone2;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -144,8 +174,8 @@ public class ContactData {
         return nickName;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public String getTitle() {
+        return title;
     }
 
     public String getCompany() {
@@ -190,6 +220,26 @@ public class ContactData {
 
     public String getAllMails() {
         return allMails;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public String getHomePage() {
+        return homePage;
+    }
+
+    public String getNotes() {
+        return notes;
     }
 
     @Override

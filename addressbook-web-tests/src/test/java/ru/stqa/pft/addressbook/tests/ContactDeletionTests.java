@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -18,7 +17,7 @@ public class ContactDeletionTests extends TestBase {
         app.goTo().homePage();
         if ( app.contact().all().size() == 0) {
             app.contact().create(new ContactData().withFirstName("firstname").withLastName("lastname")
-                    .withNickName("nickname").withJobTitle("jobtitle").withCompany("company")
+                    .withNickName("nickname").withTitle("jobtitle").withCompany("company")
                     .withHomeAddress("homeaddress").withMobile("mobile").withGroup("test1"));
         }
     }
