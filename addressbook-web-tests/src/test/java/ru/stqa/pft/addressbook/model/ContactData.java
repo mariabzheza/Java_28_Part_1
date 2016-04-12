@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
     private int id = Integer.MAX_VALUE;//щоб контакт при сортуванні був самим останнім. Якщо поставити 0,то буде першим.
     // але це потрібно тільки тоді, коли не будемо порівнювати по Id + тоді ще потрібно буде переробити методи equals та hashCode!!!;
@@ -25,6 +27,7 @@ public class ContactData {
     private String notes;
     private String firstLastName;
     private String allDetails;
+    private File photo;
 
 
 /*    public ContactData(String firstName, String lastName, String nickName, String title, String company, String homeAddress, String mobile, String workPhone, String group) {
@@ -170,6 +173,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
+
 
     public int getId() {
         return id;
@@ -261,6 +269,10 @@ public class ContactData {
 
     public String getAllDetails() {
         return allDetails;
+    }
+
+    public File getPhoto() {
+        return photo;
     }
 
     @Override
