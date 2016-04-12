@@ -23,6 +23,8 @@ public class ContactData {
     private String address2;
     private String homePage;
     private String notes;
+    private String firstLastName;
+    private String allDetails;
 
 
 /*    public ContactData(String firstName, String lastName, String nickName, String title, String company, String homeAddress, String mobile, String workPhone, String group) {
@@ -158,6 +160,17 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withFirstLastName(String firstLastName) {
+        this.firstLastName = firstLastName;
+        return this;
+    }
+
+    public ContactData withAllDetails(String allDetails) {
+        this.allDetails = allDetails;
+        return this;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -240,6 +253,14 @@ public class ContactData {
 
     public String getNotes() {
         return notes;
+    }
+
+    public String getFirstLastName() {
+        return firstLastName;
+    }
+
+    public String getAllDetails() {
+        return allDetails;
     }
 
     @Override

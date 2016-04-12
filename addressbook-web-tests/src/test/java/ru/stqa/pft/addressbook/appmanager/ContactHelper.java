@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import com.google.common.collect.ImmutableList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by maria on 02.03.2016.
@@ -201,32 +204,25 @@ public class ContactHelper extends HelperBase {
                 .withEmail(email).withEmail2(email2).withEmail3(email3)
                 .withHomeAddress(address).withAddress2(address2).withNotes(notes);
     }
-/*
-    public ContactData infoFromDetailsForm(ContactData contact) {
+
+/*    public ContactData infoFromDetailsForm(ContactData contact) {
         selectToViewContactDetailsById(contact.getId());
-        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
-        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
-        String nickname = wd.findElement(By.name("nickname")).getAttribute("value");
-        String title = wd.findElement(By.name("title")).getAttribute("value");
-        String company = wd.findElement(By.name("company")).getAttribute("value");
-        String address = wd.findElement(By.name("address")).getAttribute("value");
-        String home = wd.findElement(By.name("home")).getAttribute("value");
-        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
-        String work = wd.findElement(By.name("work")).getAttribute("value");
-        String fax = wd.findElement(By.name("fax")).getAttribute("value");
-        String email = wd.findElement(By.name("email")).getAttribute("value");
-        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
-        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
-        String homepage = wd.findElement(By.name("homepage")).getAttribute("value");
-        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
-        String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
-        String notes = wd.findElement(By.name("notes")).getAttribute("value");
+        String allDetails = wd.findElement(By.xpath("//div[@id='content']")).getText();
+        //System.out.println(allDetails);
 
         wd.navigate().back();
-        return contact;
+        return new ContactData()
+                .withAllDetails(allDetails);
+    } */
 
+    public String infoFromDetailsForm(ContactData contact) {
+        selectToViewContactDetailsById(contact.getId());
+        String allDetails = wd.findElement(By.xpath("//div[@id='content']")).getText();
+        //System.out.println(allDetails);
+
+        wd.navigate().back();
+        return allDetails;
     }
-    */
 
     public void selectToEditDeleteContact(int index) {
         //wd.findElements(By.name("selected[]")).get(index).click();

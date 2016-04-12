@@ -3,9 +3,10 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.Contacts;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -34,11 +35,33 @@ public class ContactDetailsTest extends TestBase {
 
         app.goTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
-/*        ContactData contactInfoFromDetailsForm = app.contact().infoFromDetailsForm(contact);
-        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+     // !!!!   String contactInfoFromEditForm = mergeEditFromDetails(contact);
+        System.out.println("contactInfoFromEditForm ********************");
+     // !!!   System.out.println(contactInfoFromEditForm);
+        System.out.println("********************");
+        String contactInfoFromDetailsForm = app.contact().infoFromDetailsForm(contact);
+        /*System.out.println("********************");
+        System.out.println(contactInfoFromDetailsForm.getAllDetails());
+        System.out.println("********************");*/
 
-        assertThat(contactInfoFromDetailsForm, equalTo(contactInfoFromEditForm));
-*/
+        //Arrays.asList(app.contact().infoFromDetailsForm(contact));
+
+        //assertThat(contactInfoFromDetailsForm.getFirstLastName(), equalTo(mergeFirstLastNames(contactInfoFromEditForm)));
+        //assertThat(contactInfoFromDetailsForm.getAllDetails(), equalTo(mergeFirstLastNames(contactInfoFromEditForm)));
+
     }
+
+    public String mergeFirstLastNames(ContactData contact) {
+        return Arrays.asList(contact.getFirstName(), contact.getLastName())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining(" "));
+    }
+// must be written!!!!!!!!!!!
+    /*
+    public String mergeEditFromDetails(ContactData contact) {
+        String[] firstLastName = mergeFirstLastNames(contact);
+        return firstLastName;
+    }
+    */
 
 }
