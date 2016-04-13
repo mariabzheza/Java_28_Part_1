@@ -57,7 +57,11 @@ public class ContactDataGenerator {
                     contact.getNickName(), contact.getCompany(), contact.getTitle(), contact.getHomeAddress(),
                     contact.getHomePhone(), contact.getMobile(), contact.getWorkPhone(),contact.getFax(),
                     contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getHomePage(),
-                    contact.getAddress2(), contact.getPhone2(), contact.getNotes(), contact.getGroup()));
+                    contact.getAddress2(), contact.getPhone2(), contact.getNotes(), contact.getGroup()
+                    /* if need add photo, please uncomment the next line
+                    and add ";%s" into line with String.format(...\n) */
+                    //, contact.getPhoto()
+            ));
         }
         writer.close();
     }
@@ -65,25 +69,27 @@ public class ContactDataGenerator {
     private List<ContactData> generateContacts(int count) {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++) {
+            //File photo = new File("src/test/resources/stru1.png");
             contacts.add(new ContactData()
                     .withFirstName(String.format("FirstN %s", i))
                     .withLastName(String.format("LastN %s", i))
                     .withNickName(String.format("Nick %s", i))
-                    .withCompany(String.format("Company %s", i))
                     .withTitle(String.format("Title %s", i))
+                    .withCompany(String.format("Company %s", i))
                     .withHomeAddress((String.format("HomeAddr %s", i)))
+                    .withAddress2((String.format("2-Address %s", i)))
                     .withHomePhone((String.format("HomePhone %s", i)))
                     .withMobile((String.format("Mobile %s", i)))
                     .withWorkPhone((String.format("WorkPhone %s", i)))
+                    .withPhone2((String.format("2-Phone %s", i)))
                     .withFax((String.format("Fax %s", i)))
                     .withEmail((String.format("1-Email %s", i)))
                     .withEmail2((String.format("2-Email %s", i)))
                     .withEmail3((String.format("3-Email %s", i)))
                     .withHomePage((String.format("HomePage %s", i)))
-                    .withAddress2((String.format("2-Address %s", i)))
-                    .withPhone2((String.format("2-Phone %s", i)))
                     .withNotes((String.format("Notes %s", i)))
                     .withGroup("test1")
+                    //.withPhoto(photo)
             );
         }
         return contacts;
