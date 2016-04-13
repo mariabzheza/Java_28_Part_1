@@ -31,6 +31,15 @@ public class ContactCreationTests extends TestBase {
                 .withEmail("email@e.com").withEmail2("email2@e.com").withEmail3("email3@e.com")
                 .withHomePage("homepage.com").withNotes("notes")
                 .withGroup("test1").withPhoto(photo)});
+        list.add(new Object[] {new ContactData()
+                .withFirstName("firstname22").withLastName("lastname")
+                .withNickName("nickname").withTitle("jobtitle").withCompany("company")
+                .withHomeAddress("homeaddress").withAddress2("address2")
+                .withHomePhone("22-33-15").withMobile("+7(34) 55").withWorkPhone("33-33")
+                .withPhone2("77-89").withFax("987")
+                .withEmail("email@e.com").withEmail2("email2@e.com").withEmail3("email3@e.com")
+                .withHomePage("homepage.com").withNotes("notes")
+                .withGroup("test1").withPhoto(photo)});
         return list.iterator();
     }
 
