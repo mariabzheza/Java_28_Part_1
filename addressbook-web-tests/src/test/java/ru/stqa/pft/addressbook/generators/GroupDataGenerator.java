@@ -23,6 +23,11 @@ public class GroupDataGenerator {
     @Parameter(names = "-f", description = "Target file")
     public String file;
 
+    //This -d param should be or csv or xml (and it should be added into "Edit configuration" of GroupDataGenerator's).
+    @Parameter(names = "-d", description = "Data Format")
+    public String format;
+
+
     public static void main(String[] args) throws IOException {
 
         GroupDataGenerator generator = new GroupDataGenerator();
